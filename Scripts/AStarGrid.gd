@@ -30,7 +30,7 @@ var index_id: String:
 
 static func create_index_id(row: int, column: int) -> String:
 	return "%s|%s" % [row, column]
-	
+
 func configure(configuration: AStarGridConfiguration) -> void:
 	_configuration = configuration
 
@@ -39,14 +39,14 @@ func _ready() -> void:
 	var offset_z = column * _configuration.height
 	position.x += offset_x
 	position.z += offset_z
-	
+
 	var box_shape = collision_shape_3d.shape as BoxShape3D
 	box_shape.size = Vector3(_configuration.width, _configuration.depth, _configuration.height)
 	mesh_instance_3d.mesh.set("size", box_shape.size)
 
 func on_camera_cast() -> void:
 	print("Cast on", index_id)
-	
+
 func highlight(mode: Highlight) -> void:
 	match mode:
 		Highlight.NONE:
@@ -61,15 +61,15 @@ func highlight(mode: Highlight) -> void:
 			var new_mat := StandardMaterial3D.new()
 			new_mat.albedo_color = path_color
 			mesh_instance_3d.material_override = new_mat
-	
+
 class AStarGridConfiguration:
 	var width: float
 	var height: float
 	var depth: float
-	
+
 	var row: int
 	var column: int
-	
+
 	func _init(width: float, height: float, depth: float, row: int, column: int) -> void:
 		self.width = width
 		self.height = height

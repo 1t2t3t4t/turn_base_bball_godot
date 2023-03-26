@@ -25,7 +25,7 @@ class_name AStarGridManager
 	set(newVal):
 		column = newVal
 		_create_grids_editor()
-		
+
 @onready var grids: Node3D = $Grids
 @onready var a_star_path_finder := $AStarPathFinder as AStarPathFinder
 
@@ -60,7 +60,7 @@ func get_grid(g_row: int, g_column: int) -> AStarGrid:
 	if g_row >= 0 && g_row < row && g_column >= 0 && g_column < column:
 		return get_grid_idx(AStarGrid.create_index_id(g_row, g_column))
 	return null
-	
+
 func get_neighbour(grid: AStarGrid) -> Array[AStarGrid]:
 	var results: Array[AStarGrid] = []
 	for i in range(-1, 2):
@@ -71,6 +71,6 @@ func get_neighbour(grid: AStarGrid) -> Array[AStarGrid]:
 			if n_grid:
 				results.append(n_grid)
 	return results
-	
+
 func find_path(from: AStarGrid, to: AStarGrid) -> Array[AStarGrid]:
 	return a_star_path_finder.find_path(from, to)

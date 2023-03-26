@@ -1,11 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://b1i8a1o1pl3xt"]
+[gd_scene load_steps=10 format=3 uid="uid://b1i8a1o1pl3xt"]
 
 [ext_resource type="Script" path="res://Scripts/World.gd" id="1_fx16h"]
 [ext_resource type="PackedScene" uid="uid://bxojvoftf66q3" path="res://Basketball.tscn" id="1_wi1ww"]
 [ext_resource type="Script" path="res://Scripts/Basketball.gd" id="2_3lhhy"]
 [ext_resource type="Script" path="res://Scripts/FloatingCamera.gd" id="3_2fmhn"]
 [ext_resource type="PackedScene" uid="uid://bf766hptw6dyq" path="res://AStarGridManager.tscn" id="3_j646c"]
-[ext_resource type="PackedScene" uid="uid://c5qporvgih6ys" path="res://AStarGrid.tscn" id="6_qdhfo"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_k1tbf"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -78,7 +77,6 @@ texture = SubResource("PlaceholderTexture2D_2ht3x")
 
 [node name="AStarGridManager" parent="." instance=ExtResource("3_j646c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.50098, 0, -7)
-cellScene = ExtResource("6_qdhfo")
 row = 10
 column = 10
 
