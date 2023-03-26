@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://c5qporvgih6ys"]
+
+[ext_resource type="Script" path="res://Scripts/AStarGrid.gd" id="1_haipy"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qi47j"]
+size = Vector3(1, 0.2, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hmsg5"]
+albedo_color = Color(0.619608, 0.843137, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_757ft"]
+material = SubResource("StandardMaterial3D_hmsg5")
+
+[node name="AStarGrid" type="Area3D"]
+script = ExtResource("1_haipy")
+selected_color = Color(0.717647, 0.913725, 0, 1)
+path_color = Color(0.960784, 0.101961, 0, 1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_qi47j")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("BoxMesh_757ft")

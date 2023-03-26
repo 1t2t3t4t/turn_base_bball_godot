@@ -1,0 +1,39 @@
+[gd_scene load_steps=11 format=3 uid="uid://bxojvoftf66q3"]
+
+[ext_resource type="PhysicsMaterial" uid="uid://bp7bjg3mpyfcp" path="res://PhysicsMaterials/BasketballPhysics.tres" id="1_4pt4s"]
+[ext_resource type="Texture2D" uid="uid://dxd0wt0cicmmb" path="res://Textures/GoldTin/TexturesCom_Plastic_SpaceBlanketFolds_512_albedo.png" id="2_6vn7m"]
+[ext_resource type="Texture2D" uid="uid://dc2abawnn2rnx" path="res://Textures/GoldTin/TexturesCom_Plastic_SpaceBlanketFolds_512_ao.png" id="3_gf4oi"]
+[ext_resource type="Texture2D" uid="uid://dp82ypgkvik07" path="res://Textures/GoldTin/TexturesCom_Plastic_SpaceBlanketFolds_512_height.png" id="4_p8ho2"]
+[ext_resource type="Texture2D" uid="uid://oevpy3aq3rvl" path="res://Textures/GoldTin/TexturesCom_Plastic_SpaceBlanketFolds_512_metallic.png" id="5_pgr4q"]
+[ext_resource type="Texture2D" uid="uid://6lcphapglt6q" path="res://Textures/GoldTin/TexturesCom_Plastic_SpaceBlanketFolds_512_normal.png" id="6_alu4e"]
+[ext_resource type="Texture2D" uid="uid://dq4sylwjl860r" path="res://Textures/GoldTin/TexturesCom_Plastic_SpaceBlanketFolds_512_roughness.png" id="7_akqrn"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_3jvq8"]
+radius = 0.12
+height = 0.24
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l55lm"]
+albedo_texture = ExtResource("2_6vn7m")
+metallic = 1.0
+metallic_texture = ExtResource("5_pgr4q")
+roughness_texture = ExtResource("7_akqrn")
+normal_enabled = true
+normal_scale = 5.0
+normal_texture = ExtResource("6_alu4e")
+ao_enabled = true
+ao_texture = ExtResource("3_gf4oi")
+heightmap_enabled = true
+heightmap_texture = ExtResource("4_p8ho2")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_7sjaw"]
+radius = 0.12
+
+[node name="BasketBall" type="RigidBody3D"]
+physics_material_override = ExtResource("1_4pt4s")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_3jvq8")
+surface_material_override/0 = SubResource("StandardMaterial3D_l55lm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_7sjaw")

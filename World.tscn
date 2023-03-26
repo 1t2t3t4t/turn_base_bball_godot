@@ -1,0 +1,87 @@
+[gd_scene load_steps=10 format=3 uid="uid://b1i8a1o1pl3xt"]
+
+[ext_resource type="Script" path="res://Scripts/World.gd" id="1_fx16h"]
+[ext_resource type="PackedScene" uid="uid://bxojvoftf66q3" path="res://Basketball.tscn" id="1_wi1ww"]
+[ext_resource type="Script" path="res://Scripts/Basketball.gd" id="2_3lhhy"]
+[ext_resource type="Script" path="res://Scripts/FloatingCamera.gd" id="3_2fmhn"]
+[ext_resource type="PackedScene" uid="uid://bf766hptw6dyq" path="res://AStarGridManager.tscn" id="3_j646c"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_k1tbf"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_ow8fh"]
+sky_material = SubResource("ProceduralSkyMaterial_k1tbf")
+
+[sub_resource type="Environment" id="Environment_ku31m"]
+background_mode = 2
+sky = SubResource("Sky_ow8fh")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2ht3x"]
+
+[node name="World" type="Node3D"]
+script = ExtResource("1_fx16h")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ku31m")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Map" type="Node3D" parent="."]
+
+[node name="Floor" type="CSGBox3D" parent="Map"]
+use_collision = true
+size = Vector3(15, 0.15, 14)
+
+[node name="Hoop" type="CSGCylinder3D" parent="Map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.57883, 6)
+use_collision = true
+radius = 0.05
+height = 3.048
+
+[node name="Board" type="CSGBox3D" parent="Map/Hoop"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.48363e-06, 1.76439, -0.0661354)
+size = Vector3(1, 0.681, 0.07)
+
+[node name="CSGTorus3D" type="CSGTorus3D" parent="Map/Hoop"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.68085e-05, 1.52466, -0.33804)
+inner_radius = 0.225
+outer_radius = 0.25
+
+[node name="BasketBall" parent="." instance=ExtResource("1_wi1ww")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.22829, 5.46953)
+mass = 0.62
+script = ExtResource("2_3lhhy")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75265, 3.25703, 3.95074)
+script = ExtResource("3_2fmhn")
+
+[node name="TextureRect" type="TextureRect" parent="Camera3D"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -11.5
+offset_top = -10.5
+offset_right = 11.5
+offset_bottom = 10.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("PlaceholderTexture2D_2ht3x")
+
+[node name="AStarGridManager" parent="." instance=ExtResource("3_j646c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.50098, 0, -7)
+row = 10
+column = 10
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

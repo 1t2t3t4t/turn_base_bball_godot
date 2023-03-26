@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bf766hptw6dyq"]
+
+[ext_resource type="Script" path="res://Scripts/AStarGridManager.gd" id="1_f7qww"]
+[ext_resource type="Script" path="res://Scripts/AStarPathFinder.gd" id="2_efa63"]
+
+[node name="AStarGridManager" type="Node3D"]
+script = ExtResource("1_f7qww")
+row = 5
+column = 5
+
+[node name="Grids" type="Node3D" parent="."]
+
+[node name="AStarPathFinder" type="Node3D" parent="."]
+script = ExtResource("2_efa63")
+
+[node name="Marker3D" type="Marker3D" parent="."]
