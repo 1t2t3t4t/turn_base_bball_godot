@@ -5,7 +5,7 @@ extends Node3D
 class_name AStarGridManager
 
 @export_category("Cell Configuration")
-@export var cellScene: PackedScene = preload("res://AStarGrid.tscn")
+@export var cell_scene: PackedScene = preload("res://AStarGrid.tscn")
 @export var width: float = 1:
 	set(newVal):
 		width = newVal
@@ -46,7 +46,7 @@ func _create_grids() -> void:
 	_clear_grids_children(grids)
 	for x in range(0, row):
 		for y in range(0, column):
-			var new_cell = cellScene.instantiate() as AStarGrid
+			var new_cell = cell_scene.instantiate() as AStarGrid
 			var config = AStarGrid.AStarGridConfiguration.new(width, height, 0.2, x, y)
 			new_cell.configure(config)
 			new_cell.name = "Grid row %s column %s" % [x, y]
