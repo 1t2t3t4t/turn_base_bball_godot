@@ -15,6 +15,10 @@ run/main_scene="res://World.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+DebugDraw3d="*res://Scripts/DebugDraw3D.gd"
+
 [dotnet]
 
 project/assembly_name="turn_base_b_ball_prototype"
